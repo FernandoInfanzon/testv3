@@ -3,10 +3,18 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 
 const jwt = require('jsonwebtoken');
-
+const path = require('path');
 const Usuario = require('../models/usuario');
 
 const app = express();
+// configure view handler
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, '../views'));
+
+app.get("/", function(req, res) {
+    res.render("login");
+});
+
 
 
 app.post('/login', (req, res) => {
